@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>仕入れ履歴</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>商品</th>
+                <th>数量</th>
+                <th>価格</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>{{ purchase.product.name }}</td>
+                <td>{{ purchase.quantity }} {{ purchase.product.unit }}</td>
+                <td>{{ purchase.price }} 円</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

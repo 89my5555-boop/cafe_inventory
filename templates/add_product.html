@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>商品追加</h1>
+<form method="POST">
+    <div>
+        <label>商品名:</label>
+        <input type="text" name="name" required>
+    </div>
+    <div>
+        <label>単位:</label>
+        <input type="text" name="unit" required>
+    </div>
+    <div>
+        <label>仕入先:</label>
+        <input type="text" name="supplier">
+    </div>
+    <div>
+        <label>初期在庫:</label>
+        <input type="number" name="stock" value="0">
+    </div>
+    <button type="submit">登録</button>
+</form>
+<a href="{{ url_for('index') }}">在庫一覧へ戻る</a>
+{% endblock %}

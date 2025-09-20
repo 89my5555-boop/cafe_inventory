@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>在庫一覧</h2>
+
+    <a href="{{ url_for('purchases') }}" class="btn btn-info mb-3">仕入れ履歴を見る</a>
+
+    <a href="{{ url_for('add_purchase') }}" class="btn btn-primary mb-3">仕入れ登録ページ</a>
+
+
+
+    <div class="mb-3">
+        <a href="{{ url_for('add_product') }}" class="btn btn-primary">新しい商品を登録</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>商品名</th>
+                <th>単位</th>
+                <th>仕入れ先</th>
+                <th>在庫数</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.unit }}</td>
+                <td>{{ product.supplier }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <a href="{{ url_for('update_stock', product_id=product.id, action='plus') }}" class="btn btn-sm btn-success">＋</a>
+                    <a href="{{ url_for('update_stock', product_id=product.id, action='minus') }}" class="btn btn-sm btn-danger">－</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
